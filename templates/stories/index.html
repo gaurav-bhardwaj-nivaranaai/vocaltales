@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VocalTales - Where Voices Become Magical Stories</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">🎭 VocalTales</h1>
+            <p class="tagline">Where voices become magical stories</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Story Creation Section -->
+            <section class="story-creator" id="storyCreator">
+                <div class="creator-card">
+                    <h2>Create Your Magical Story</h2>
+                    
+                    <!-- Voice Recording -->
+                    <div class="voice-section">
+                        <button id="recordBtn" class="record-btn">
+                            <span class="record-icon">🎤</span>
+                            <span class="record-text">Tell me your story idea!</span>
+                        </button>
+                        <div id="recordingStatus" class="recording-status hidden"></div>
+                    </div>
+
+                    <!-- Story Preferences -->
+                    <div class="preferences-section">
+                        <div class="preference-group">
+                            <label for="genre">Story Type:</label>
+                            <select id="genre" name="genre">
+                                <option value="adventure">Adventure</option>
+                                <option value="fairy_tale">Fairy Tale</option>
+                                <option value="educational">Educational</option>
+                                <option value="bedtime">Bedtime</option>
+                                <option value="mystery">Mystery</option>
+                                <option value="friendship">Friendship</option>
+                            </select>
+                        </div>
+
+                        <div class="preference-group">
+                            <label for="length">Story Length:</label>
+                            <select id="length" name="length">
+                                <option value="short">Short (3-5 min)</option>
+                                <option value="medium" selected>Medium (5-8 min)</option>
+                                <option value="long">Long (8-12 min)</option>
+                            </select>
+                        </div>
+
+                        <div class="preference-group">
+                            <label for="ageGroup">Age:</label>
+                            <select id="ageGroup" name="age_group">
+                                <option value="4">4 years</option>
+                                <option value="5">5 years</option>
+                                <option value="6" selected>6 years</option>
+                                <option value="7">7 years</option>
+                                <option value="8">8 years</option>
+                                <option value="9">9 years</option>
+                                <option value="10">10 years</option>
+                                <option value="11">11 years</option>
+                                <option value="12">12 years</option>
+                            </select>
+                        </div>
+
+                        <div class="preference-group">
+                            <label for="language">Language:</label>
+                            <select id="language" name="language">
+                                <option value="auto" selected>🔍 Auto-detect</option>
+                                <option value="en">🇺🇸 English</option>
+                                <option value="es">🇪🇸 Spanish</option>
+                                <option value="fr">🇫🇷 French</option>
+                                <option value="de">🇩🇪 German</option>
+                                <option value="it">🇮🇹 Italian</option>
+                                <option value="pt">🇵🇹 Portuguese</option>
+                                <option value="hi">🇮🇳 Hindi</option>
+                                <option value="zh">🇨🇳 Chinese</option>
+                                <option value="ja">🇯🇵 Japanese</option>
+                                <option value="ko">🇰🇷 Korean</option>
+                                <option value="ar">🇸🇦 Arabic</option>
+                                <option value="ru">🇷🇺 Russian</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Optional Details -->
+                    <div class="details-section">
+                        <input type="text" id="characters" placeholder="Characters (optional)" class="input-field">
+                        <input type="text" id="setting" placeholder="Setting (optional)" class="input-field">
+                        <input type="text" id="moralLesson" placeholder="Moral lesson (optional)" class="input-field">
+                    </div>
+
+                    <!-- Text Input Fallback -->
+                    <div class="text-input-section">
+                        <textarea id="textInput" placeholder="Or type your story idea here..." class="text-input"></textarea>
+                    </div>
+
+                    <!-- Generate Button -->
+                    <button id="generateBtn" class="generate-btn">
+                        <span class="btn-text">Create My Story!</span>
+                        <span class="btn-loading hidden">✨ Creating magic...</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Story Display Section -->
+            <section class="story-display hidden" id="storyDisplay">
+                <div class="story-card">
+                    <div class="story-header">
+                        <h2 id="storyTitle">Your Magical Story</h2>
+                        <div class="story-meta">
+                            <span id="storyDuration">⏱️ 5 min</span>
+                            <span id="storyWords">📖 500 words</span>
+                        </div>
+                    </div>
+                    
+                    <div class="story-content">
+                        <div id="storyText" class="story-text"></div>
+                    </div>
+                    
+                    <div class="story-controls">
+                        <button id="playBtn" class="control-btn play-btn">
+                            <span class="play-icon">▶️</span>
+                            <span>Listen to Story</span>
+                        </button>
+                        <button id="pauseBtn" class="control-btn pause-btn hidden">
+                            <span class="pause-icon">⏸️</span>
+                            <span>Pause</span>
+                        </button>
+                        <button id="readAlongBtn" class="control-btn read-along-btn">
+                            <span class="read-icon">📖</span>
+                            <span>Read Along</span>
+                        </button>
+                        <button id="downloadAudioBtn" class="control-btn download-btn">
+                            <span class="download-icon">⬇️</span>
+                            <span>Download Audio</span>
+                        </button>
+                        <button id="favoriteBtn" class="control-btn favorite-btn">
+                            <span class="heart-icon">🤍</span>
+                            <span>Save Favorite</span>
+                        </button>
+                        <button id="newStoryBtn" class="control-btn new-story-btn">
+                            <span class="new-icon">✨</span>
+                            <span>New Story</span>
+                        </button>
+                    </div>
+                    
+                    <!-- TTS Options -->
+                    <div class="tts-options">
+                        <label for="ttsMethod">Voice Method:</label>
+                        <select id="ttsMethod">
+                            <option value="gtts" selected>Google TTS (Best for Hindi)</option>
+                            <option value="browser">Browser Voice</option>
+                            <option value="responsive">ResponsiveVoice</option>
+                            <option value="readalong">Visual Read-Along</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Story Library -->
+            <section class="story-library" id="storyLibrary">
+                <h2>Your Story Library</h2>
+                <div id="storiesList" class="stories-grid"></div>
+            </section>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay hidden">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <h3>Creating your magical story...</h3>
+                <p>Our AI storyteller is weaving your tale!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=FREE"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
